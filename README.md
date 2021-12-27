@@ -37,8 +37,11 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
 3. Теперь запустите браузер и введите адрес веб-сервера. Откроется веб-страница мастера Nextcloud здесь же нужно указать вашу БД PostgreSQL. Введите все необходимые данные для завершения работы мастера.
 
 Ваш сервер: db
+
 Ваша база данных: nextcloud
+
 Пароль бд указывается в docker-compose.yml **POSTGRES_PASSWORD=ваш пароль**
+
 
 4. Перейдите в папку проекта и запустите скрипт `set_configuration.sh`:
 
