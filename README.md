@@ -6,6 +6,7 @@
 2) OnlyOffice
 3) Nginx
 4) PostgreSQL
+
 Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextcloud Docker installation will install the preconfigured version of [ONLYOFFICE Document Server][2] connected to Nextcloud to your server running them in Docker containers.
 
 
@@ -21,11 +22,10 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
 
     ```
     git clone https://github.com/Kaisarhan/docker-compose-nextcloud
-    **В yml файл были добавлены корректировки, добавлен образ PGSQL.**
     ```
 
 2. Run Docker Compose:
-
+    Прежде чем запустить команду нужно войти в папку docker-compose-nextcloud
     **Please note**: Затустить от имени **root** или **sudo docker-compose up -d**.
 
     ```
