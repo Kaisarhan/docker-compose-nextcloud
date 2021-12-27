@@ -1,44 +1,54 @@
 ## Document Server and Nextcloud Docker installation
 
+Готовый написанный Docker-compose.yml 
+Устанавливаются следующие контейнеры: 
+1) Nextcloud 
+2) OnlyOffice
+3) Nginx
+4) PostgreSQL
 Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextcloud Docker installation will install the preconfigured version of [ONLYOFFICE Document Server][2] connected to Nextcloud to your server running them in Docker containers.
 
 
 ## Requirements
 
-* The latest version of Docker (can be downloaded here: [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/))
-* Docker compose (can be downloaded here: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/))
+* Последнюю версию Docker (можно скачать здесь: [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/))
+* Docker compose (можно скачать здесь: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/))
 
 
 ## Installation
 
-1. Get the latest version of this repository running the command:
+1. Что бы подтянуть файлы на нашу станцию введите следующие команды:
 
     ```
-    git clone https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud
-    cd docker-onlyoffice-nextcloud
+    git clone https://github.com/Kaisarhan/docker-compose-nextcloud
+    **В yml файл были добавлены корректировки, добавлен образ PGSQL.**
     ```
 
 2. Run Docker Compose:
 
-    **Please note**: the action must be performed with **root** rights.
+    **Please note**: Затустить от имени **root** или **sudo docker-compose up -d**.
 
     ```
     docker-compose up -d
     ```
 
-    **Please note**: you might need to wait a couple of minutes when all the containers are up and running after the above command.
+    **Please note**: Вам может потребоваться подождать пару минут, когда все контейнеры будут запущены и будут работать после указанной выше команды.
 
-3. Now launch the browser and enter the webserver address. The Nextcloud wizard webpage will be opened. Enter all the necessary data to complete the wizard.
+3. Теперь запустите браузер и введите адрес веб-сервера. Откроется веб-страница мастера Nextcloud здесь же нужно указать вашу БД PostgreSQL. Введите все необходимые данные для завершения работы мастера.
 
-4. Go to the project folder and run the `set_configuration.sh` script:
+Ваш сервер: db
+Ваша база данных: nextcloud
+Пароль бд указывается в docker-compose.yml **POSTGRES_PASSWORD=ваш пароль**
 
-    **Please note**: the action must be performed with **root** rights.
+4. Перейдите в папку проекта и запустите скрипт `set_configuration.sh`:
+
+    **Please note**: действие должно производиться с правами **root**.
 
     ```
     bash set_configuration.sh
     ```
 
-Now you can enter Nextcloud and create a new document. It will be opened in ONLYOFFICE Document Server.
+Теперь вы можете войти в Nextcloud и создать новый документ. Он будет открыт на Сервере документов ONLYOFFICE.
 
 
 ## ONLYOFFICE Docs editions

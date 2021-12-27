@@ -34,7 +34,7 @@ services:
     restart: always
     container_name: db
     environment:
-     - POSTGRES_PASSWORD=Nazi502294
+     - POSTGRES_PASSWORD=Ваш пароль
      - POSTGRES_DB=nextcloud
     volumes:
       - ./data/db:/var/lib/postgresql/data
