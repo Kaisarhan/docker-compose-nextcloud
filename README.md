@@ -77,7 +77,7 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
 * BackUp database Postgres
     
     ```
-    docker exec container_name pg_dump -c -U postgres_user db_name > new_backup_name.dump
+    docker exec container_name pg_dump -c -U postgres_user db_name > new_backup_name`date +"%Y%m%d"`.dump
     ```
 
 
