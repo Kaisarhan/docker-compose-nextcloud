@@ -68,7 +68,29 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     ```
    docker exec -it container_name bash
     ```
+* Команды для удаление Container images и container volume
     
+    Список оброзов 
+    
+    ```
+    docker images -a
+    ```
+    
+    Удаление всех оброзов
+    ```
+    docker system prune -a
+    ```
+* Команда для удаление volumes
+    
+    Список volumes
+    ```
+    docker volume ls
+    ```
+    
+    Удаления всех volume
+    ```
+    docker volume prune
+    ```
 **NextCloud:**
 
 * Переход в режим обслуживание. Если нужно будет выключить режим обслуживание поменяйте значение на --off
