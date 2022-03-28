@@ -79,7 +79,7 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     
 **Postgres:**
 
-* BackUp database Postgres
+* BackUp database Postgres вариант 1-ый (не рекомендую так как я сам еще не разобрался в этом варианте)
     
     ```
     docker exec container_name pg_dump -c -U postgres_user db_name > new_backup_name`date +"%Y%m%d"`.dump
@@ -88,6 +88,16 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     ```
     docker exec db pg_dump -U postgres -f nextcloud > nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
     ```
+* BackUp database Postgres вариант 2-ой
+    **BackUp DB**
+    ```
+    docker exec -t container_name pg_dumpall -c -U postgres > your-dump-name_`date +%d-%m-%Y`.sql
+    ```
+    **Restore**
+    ```
+    cat your-dump-name_`date +%d-%m-%Y`.sql | docker exec -i container_name psql -U postgres
+    ```
+    
 
 ## Project Information
 
