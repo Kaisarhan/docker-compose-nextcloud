@@ -89,6 +89,7 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     docker exec db pg_dump -U postgres -f nextcloud > nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
     ```
 * BackUp database Postgres вариант 2-ой
+
     **BackUp DB**
     ```
     docker exec -t container_name pg_dumpall -c -U postgres > your-dump-name_`date +%d-%m-%Y`.sql
