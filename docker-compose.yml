@@ -36,10 +36,10 @@ services:
     ports:
      - 5432:5432
     environment:
-     - POSTGRES_PASSWORD=you_pwd_db
+     - POSTGRES_PASSWORD=Nazi502294
      - POSTGRES_DB=nextcloud
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - postgresql:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4
     restart: always
@@ -48,10 +48,10 @@ services:
       - 53603:53603
       - 8080:80
     environment:
-      PGADMIN_DEFAULT_EMAIL: you_mail@exemple.kz
-      PGADMIN_DEFAULT_PASSWORD: you_pwd_pgadmin
+      PGADMIN_DEFAULT_EMAIL: kaisarhan@mail.ru
+      PGADMIN_DEFAULT_PASSWORD: Nazi502294
 volumes:
   document_data:
   document_log:
   app_data:
-  pgadmin:
+  postgresql:
