@@ -18,13 +18,31 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
 
 ## Installation
 
-1. Что бы подтянуть файлы на нашу станцию введите следующие команды:
+1. Установка Docker
+    
+    ```
+    sudo apt install docker
+    ```
+    
+2. Установка Docker-compose
+    ```
+    sudo apt install docker-compose
+    ```    
+3.1 Добавить пользователя в группу Docker
+    
+    sudo usermod -aG docker ${USER}
+    
+3.2 Рестартануть сервис
+
+    sudo systemctl restart docker
+
+4. Что бы подтянуть файлы на нашу станцию введите следующие команды:
 
     ```
     git clone https://github.com/Kaisarhan/docker-compose-nextcloud
     ```
 
-2. Run Docker Compose:
+5. Run Docker Compose:
     Прежде чем запустить команду нужно войти в папку docker-compose-nextcloud
     **Please note**: Затустить от имени **root** или **sudo docker-compose up -d**.
 
