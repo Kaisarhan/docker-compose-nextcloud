@@ -77,6 +77,31 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
 
 Теперь вы можете войти в Nextcloud и создать новый документ. Он будет открыт на Сервере документов ONLYOFFICE.
 
+## BackUp.
+**NextCloud:**
+
+* Переход в режим обслуживание. Что бы пользователи не могули вносить изменения.
+
+    ```
+    docker exec -u www-data container_name php occ maintenance:mode --on
+    ```
+* После завершения Backup-ирования не забудьте выключить режим обслуживание.
+
+    ```
+    docker exec -u www-data container_name php occ maintenance:mode --off
+    ```    
+* Архивируем корневые папки и файлы NextCloud
+
+    ```
+    sudo tar -cvzf nc-folder-backup_`date +%d-%m-%Y`.tar.gz docker-compose-nextcloud/data/app_data/
+    ```    
+**Postgres:**
+
+* Backup-ируем всю DB
+
+    ```
+    docker exec -t db pg_dumpall -c -U postgres > nc-db-backup_`date +%d-%m-%Y`.sql
+    ```
 
 ## Все команды каторый возможно помогут вам.
 
