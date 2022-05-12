@@ -102,6 +102,33 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     ```
     docker exec -t db pg_dumpall -c -U postgres > nc-db-backup_`date +%d-%m-%Y`.sql
     ```
+    
+## Restore.
+**NextCloud:**
+
+* Переход в режим обслуживание. Что бы пользователи не могули вносить изменения.
+
+    ```
+    docker exec -u www-data container_name php occ maintenance:mode --on
+    ```
+* После завершения Backup-ирования не забудьте выключить режим обслуживание.
+
+    ```
+    docker exec -u www-data container_name php occ maintenance:mode --off
+    ```    
+* Разархивируем корневые папки и файлы NextCloud
+
+    ```
+    sudo tar -xvf bunctest.tar.gz
+    ```    
+**Postgres:**
+
+* Restore DB
+
+    ```
+    cat test_backup_nextcloud_`date +%d-%m-%Y`.sql | docker exec -i db psql -U postgres
+    ```
+    
 
 ## Все команды каторый возможно помогут вам.
 
