@@ -6,13 +6,13 @@
 2) OnlyOffice
 3) Nginx
 4) PostgreSQL
+5) pgAdmin
 
-Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextcloud Docker installation will install the preconfigured version of [ONLYOFFICE Document Server][2] connected to Nextcloud to your server running them in Docker containers.
 
 
 ## Requirements
 
-* Последнюю версию Docker (можно скачать здесь: [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/))
+* Docker (можно скачать здесь: [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/))
 * Docker compose (можно скачать здесь: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/))
 
 
@@ -43,8 +43,7 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     ```
 
 5. Run Docker Compose:
-    Прежде чем запустить команду нужно войти в папку docker-compose-nextcloud
-    **Please note**: Затустить от имени **root** или **sudo docker-compose up -d**.
+    Прежде чем запустить команду нужно войти в каталог **docker-compose-nextcloud**.
 
     ```
     docker-compose up -d
@@ -62,14 +61,12 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
 
 Пароль нужно будет указать в Docker-compose.yml
 
-
-
 Пароль бд указывается в docker-compose.yml **POSTGRES_PASSWORD=ваш пароль**
 
 
-4. Перейдите в папку проекта и запустите скрипт `set_configuration.sh`:
+7. Устанавливаем **OnlyOffice** в NextCloud перейдите в папку проекта и запустите скрипт `set_configuration.sh`:
 
-    **Please note**: действие должно производиться с правами **root**.
+    **Обратите внимание**: действие должно производиться с правами **root**.
 
     ```
     bash set_configuration.sh
@@ -85,24 +82,26 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     ```
     docker exec -u www-data container_name php occ maintenance:mode --on
     ```
-* После завершения Backup-ирования не забудьте выключить режим обслуживание.
-
-    ```
-    docker exec -u www-data container_name php occ maintenance:mode --off
-    ```    
 * Архивируем корневые папки и файлы NextCloud
 
     ```
-    sudo tar -cvzf nc-folder-backup_`date +%d-%m-%Y`.tar.gz docker-compose-nextcloud/data/app_data/
-    ```    
+    sudo tar -cvzf /mnt/path/archiv-name_`date +%d-%m-%Y`.tar.gz data
+    ```  
+    
 **Postgres:**
 
 * Backup-ируем всю DB
 
     ```
-    docker exec -t db pg_dumpall -c -U postgres > nc-db-backup_`date +%d-%m-%Y`.sql
+    docker exec -t db pg_dumpall -c -U postgres > /mnt/path/BackupSql-name_`date +%d-%m-%Y`.sql
     ```
     
+**NextCloud:** 
+
+* После завершения Backup-ирования не забудьте выключить режим обслуживание.
+    ```
+    docker exec -u www-data container_name php occ maintenance:mode --off
+    ```        
 ## Restore.
 **NextCloud:**
 
@@ -111,23 +110,25 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     ```
     docker exec -u www-data container_name php occ maintenance:mode --on
     ```
-* После завершения Backup-ирования не забудьте выключить режим обслуживание.
-
-    ```
-    docker exec -u www-data container_name php occ maintenance:mode --off
-    ```    
 * Разархивируем корневые папки и файлы NextCloud
 
     ```
-    sudo tar -xvf bunctest.tar.gz
+    sudo tar -xvf archiv-name.ter.gz
     ```    
 **Postgres:**
 
 * Restore DB
 
     ```
-    cat test_backup_nextcloud_`date +%d-%m-%Y`.sql | docker exec -i db psql -U postgres
+    cat BackupSql-name_`date +%d-%m-%Y`.sql | docker exec -i db psql -U postgres
     ```
+**NextCloud:**
+
+* После завершения восстановления не забудьте выключить режим обслуживание.
+
+    ```
+    docker exec -u www-data container_name php occ maintenance:mode --off
+    ```        
     
 
 ## Все команды каторый возможно помогут вам.
@@ -168,6 +169,9 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     ```
     docker exec -u www-data container_name php occ maintenance:mode --on
     ```
+     ```
+    docker exec -u www-data container_name php occ maintenance:mode --off
+    ```
     
 **Postgres:**
 
@@ -191,18 +195,3 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
     cat your-dump-name_`date +%d-%m-%Y`.sql | docker exec -i container_name psql -U postgres
     ```
     
-
-## Project Information
-
-Official website: [https://www.onlyoffice.com/](https://www.onlyoffice.com/?utm_source=github&utm_medium=cpc&utm_campaign=GitHubDockerNC)
-
-Code repository: [https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud](https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud "https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud")
-
-
-## User Feedback and Support
-
-If you have any problems with or questions about [ONLYOFFICE Document Server][2], please visit our official forum to find answers to your questions: [forum.onlyoffice.com][1] or you can ask and answer ONLYOFFICE development questions on [Stack Overflow][3].
-
-[1]: https://forum.onlyoffice.com
-[2]: https://github.com/ONLYOFFICE/DocumentServer
-[3]: http://stackoverflow.com/questions/tagged/onlyoffice
